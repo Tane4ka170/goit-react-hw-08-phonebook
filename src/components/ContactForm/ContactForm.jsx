@@ -43,9 +43,11 @@ const ContactForm = () => {
         <p className={s.title}>Name</p>
         <input
           className={s.input}
-          {...register('name', { required: 'Name is required' })}
           type="text"
-          placeholder="Name"
+          {...register('name', { required: true })}
+          id="addName"
+          required
+          placeholder="Please provide a name"
         />
         {errors.name && <p>{errors.name.message}</p>}
       </label>
@@ -54,9 +56,11 @@ const ContactForm = () => {
         <p className={s.title}>Number</p>
         <input
           className={s.input}
-          {...register('phone', { required: 'Phone number is required' })}
           type="tel"
-          placeholder="Phone Number"
+          {...register('phone', { required: true })}
+          id="addNumber"
+          placeholder="Please enter a valid phone number"
+          required
         />
         {errors.phone && <p>{errors.phone.message}</p>}
       </label>

@@ -1,9 +1,9 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import s from './Filter.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { filterContacts } from 'redux/sliseFilter';
 import { selectFilter } from 'redux/selectors';
+import s from './Filter.module.css';
 
 const Filter = () => {
   const dispatch = useDispatch();

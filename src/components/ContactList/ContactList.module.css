@@ -1,0 +1,28 @@
+.ul {
+    list-style: none;
+    padding: 0;
+}
+
+.list {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #d9dd68;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn {
+    background-color: #583cf3;
+    color: #fff;
+    cursor: pointer;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+
+button:hover {
+    background-color: #c93a03;
+}

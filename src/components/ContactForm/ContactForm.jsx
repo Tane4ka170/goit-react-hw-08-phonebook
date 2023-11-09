@@ -1,22 +1,28 @@
-import s from './ContactForm.module.css';
+import React from 'react';
+import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-
 import { nanoid } from '@reduxjs/toolkit';
 import { addContactThunk } from 'redux/operations';
 import { selectContacts } from 'redux/selectors';
 import { toast } from 'react-toastify';
+import s from './ContactForm.module.css';
 
 const ContactForm = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
 
-  const handleSubmit = event => {
-    event.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
 
+  const onSubmit = data => {
     const contact = {
       id: nanoid(),
-      name: event.currentTarget.elements.name.value,
-      phone: event.currentTarget.elements.phone.value,
+      name: data.name,
+      phone: data.phone,
     };
 
     const isExist = contacts.find(
@@ -28,32 +34,36 @@ const ContactForm = () => {
     }
 
     dispatch(addContactThunk(contact));
-    event.currentTarget.reset();
+    reset();
   };
 
   return (
-    <form onSubmit={handleSubmit} className={s.form}>
+    <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
       <label className={s.label}>
         <p className={s.title}>Name</p>
         <input
           className={s.input}
+          {...register('name', { required: 'Name is required' })}
           type="text"
-          name="name"
           placeholder="Name"
-          required
         />
+        {errors.name && <p>{errors.name.message}</p>}
       </label>
+
       <label className={s.label}>
         <p className={s.title}>Number</p>
         <input
           className={s.input}
+          {...register('phone', { required: 'Phone number is required' })}
           type="tel"
-          name="phone"
           placeholder="Phone Number"
-          required
         />
+        {errors.phone && <p>{errors.phone.message}</p>}
       </label>
-      <button className={s.button}>Add contact</button>
+
+      <button type="submit" className={s.button}>
+        Add contact
+      </button>
     </form>
   );
 };

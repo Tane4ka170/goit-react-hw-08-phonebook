@@ -1,8 +1,8 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { filterContacts } from 'redux/sliseFilter';
-import { selectFilter } from 'redux/selectors';
+import { filterContacts } from 'redux/contacts/sliseFilter';
+import { selectFilter } from 'redux/contacts/selectors';
 import s from './Filter.module.css';
 
 const Filter = () => {
@@ -26,7 +26,7 @@ const Filter = () => {
         className={s.inpt}
         {...register('filter')}
         type="text"
-        onChange={handleSubmit(onSubmit)}
+        onChange={event => dispatch(filterContacts(event.target.value.trim()))}
       />
     </form>
   );

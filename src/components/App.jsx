@@ -1,10 +1,15 @@
-import ContactForm from './ContactForm/ContactForm';
-import ContactList from './ContactList/ContactList';
-import Filter from './Filter/Filter';
-import s from './App.module.css';
 import { useEffect } from 'react';
-import { fetchAllContactsThunk } from 'redux/operations';
+import { fetchAllContactsThunk } from 'redux/contacts/operations';
 import { useDispatch } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
+import Home from 'pages/Home/Home';
+import { Login } from 'pages/Login/Login';
+import { Contacts } from 'pages/Contacs/Contacts';
+import { Layout } from './Layout/Layout';
+import PrivateRoute from './PrivateRoute';
+import RestrictedRoute from './RestrictedRoute';
+import { Register } from 'pages/Register/Register';
+import NotFound from 'pages/NotFound/NotFound';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -12,13 +17,38 @@ const App = () => {
     dispatch(fetchAllContactsThunk());
   }, [dispatch]);
   return (
-    <div className={s.div}>
-      <h1 className={s.title}>Phonebook</h1>
-      <ContactForm />
-      <h2 className={s.title}>Contacts</h2>
-      <Filter />
-      <ContactList />
-    </div>
+    <>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route
+            path="register"
+            element={
+              <RestrictedRoute
+                redirectTo="/contacts"
+                component={<Register />}
+              />
+            }
+          />
+
+          <Route
+            path="login"
+            element={
+              <RestrictedRoute redirectTo="/contacts" component={<Login />} />
+            }
+          />
+
+          <Route
+            path="contacts"
+            element={
+              <PrivateRoute redirectTo="/login" component={<Contacts />} />
+            }
+          />
+
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Routes>
+    </>
   );
 };
 

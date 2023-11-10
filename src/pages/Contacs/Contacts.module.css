@@ -1,0 +1,12 @@
+.div {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #f8631f;
+    border-radius: 10px;
+}
+
+.title {
+    font-size: 24px;
+    margin: 10px 0;
+}

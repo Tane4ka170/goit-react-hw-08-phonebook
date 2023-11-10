@@ -2,13 +2,13 @@ import React from 'react';
 import s from './ContactList.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { deleteContactThunk } from 'redux/operations';
+import { deleteContactThunk } from 'redux/contacts/operations';
 import {
   selectContacts,
   selectError,
   selectFilter,
   selectLoading,
-} from 'redux/selectors';
+} from 'redux/contacts/selectors';
 import Loader from '../Loader/Loader';
 import { toast } from 'react-toastify';
 
@@ -18,8 +18,10 @@ const ContactList = () => {
   const dispatch = useDispatch();
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
-  const filteredContacts = contacts.filter(contact =>
-    contact.name.toLowerCase().includes(filter.toLowerCase())
+  const filteredContacts = contacts.filter(
+    contact =>
+      contact.name.toLowerCase().includes(` ${filter.toLowerCase()}`) ||
+      contact.name.toLowerCase().startsWith(filter.toLowerCase())
   );
 
   useEffect(() => {

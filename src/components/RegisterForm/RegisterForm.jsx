@@ -34,14 +34,16 @@ export const RegisterForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      <p classname={s.title}>Register </p>
+      <p classname={s.message}>Join now for complete access to the app </p>
       <div>
-        <label>Ім'я</label>
+        <label>Name</label>
         <input
           {...register('name', {
-            required: 'Name is required',
+            required: 'Please provide your name',
             minLength: {
               value: 3,
-              message: 'Name should be at least 3 characters',
+              message: 'Please enter a name with at least 3 characters',
             },
           })}
           type="text"
@@ -53,10 +55,10 @@ export const RegisterForm = () => {
         <label>Email</label>
         <input
           {...register('email', {
-            required: 'Email is required',
+            required: 'Please provide your email',
             minLength: {
               value: 6,
-              message: 'Email should be at least 6 characters',
+              message: 'Ensure your email is at least 6 characters long',
             },
           })}
           type="email"
@@ -65,13 +67,13 @@ export const RegisterForm = () => {
         {formErrors.email && <p>{formErrors.email.message}</p>}
       </div>
       <div>
-        <label>Пароль</label>
+        <label>Password</label>
         <input
           {...register('password', {
-            required: 'Password is required',
+            required: 'Please enter your password',
             minLength: {
               value: 6,
-              message: 'Password should be at least 6 characters',
+              message: 'Make sure your password is at least 6 characters long',
             },
           })}
           type="password"
@@ -83,7 +85,7 @@ export const RegisterForm = () => {
         </div>
 
         <span>
-          Have an account? <Link to={'/login'}>Log in</Link>
+          Have an account already? <Link to={'/login'}>Log in now</Link>
         </span>
       </div>
     </form>

@@ -38,10 +38,10 @@ export const LoginForm = () => {
         <label className={s.label}>Email</label>
         <input
           {...register('email', {
-            required: 'Email is required',
+            required: 'Please provide your email',
             minLength: {
               value: 6,
-              message: 'Email should be at least 6 characters',
+              message: 'Ensure your email is at least 6 characters long',
             },
           })}
           className={s.input}
@@ -56,10 +56,10 @@ export const LoginForm = () => {
         <label className={s.label}>Password</label>
         <input
           {...register('password', {
-            required: 'Password is required',
+            required: 'Please enter your password',
             minLength: {
               value: 6,
-              message: 'Password should be at least 6 characters',
+              message: 'Make sure your password is at least 6 characters long',
             },
           })}
           className={s.input}
@@ -74,7 +74,7 @@ export const LoginForm = () => {
         </div>
 
         <span className={s.registerLink}>
-          Don't have an account? <Link to={'/register'}>Register</Link>
+          New here? <Link to={'/register'}>Create an account</Link>
         </span>
       </div>
     </form>

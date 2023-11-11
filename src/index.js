@@ -15,8 +15,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <App />
+          <ToastContainer autoClose={1000} theme="colored" />
         </PersistGate>
-        <ToastContainer autoClose={1000} theme="colored" />
       </Provider>
     </BrowserRouter>
   </React.StrictMode>

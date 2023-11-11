@@ -1,4 +1,4 @@
-import { isAnyOf } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import {
   registerThunk,
   logoutThunk,
@@ -18,56 +18,37 @@ const initialState = {
   isLoading: false,
 };
 
-const authSlise = {
+const authSlice = createSlice({
   name: 'auth',
   initialState,
-  extraReducers: builder => {
+  extraReducers: builder =>
     builder
       .addCase(registerThunk.fulfilled, (state, { payload }) => {
-        state.user.name = payload.name;
-        state.user.email = payload.email;
+        state.user = payload.user;
         state.token = payload.token;
         state.isLoggedIn = true;
-      })
-      .addCase(logoutThunk.fulfilled, (state, { payload }) => {
-        return (state = initialState);
       })
       .addCase(loginThunk.fulfilled, (state, { payload }) => {
-        state.token = payload.token;
         state.user = payload.user;
+        state.token = payload.token;
         state.isLoggedIn = true;
-        state.isLoading = false;
+      })
+      .addCase(logoutThunk.fulfilled, state => {
+        state.user = { name: null, email: null };
+        state.token = null;
+        state.isLoggedIn = false;
+      })
+      .addCase(refreshThunk.pending, state => {
+        state.isRefreshing = true;
       })
       .addCase(refreshThunk.fulfilled, (state, { payload }) => {
         state.user = payload;
         state.isLoggedIn = true;
         state.isRefreshing = false;
       })
-      .addMatcher(
-        isAnyOf(
-          refreshThunk.pending,
-          registerThunk.pending,
-          loginThunk.pending,
-          logoutThunk.pending
-        ),
-        (state, { payload }) => {
-          state.loading = true;
-          state.error = null;
-        }
-      )
-      .addMatcher(
-        isAnyOf(
-          refreshThunk.rejected,
-          registerThunk.rejected,
-          loginThunk.rejected,
-          logoutThunk.rejected
-        ),
-        (state, { payload }) => {
-          state.loading = false;
-          state.error = payload;
-        }
-      );
-  },
-};
+      .addCase(refreshThunk.rejected, state => {
+        state.isRefreshing = false;
+      }),
+});
 
-export const authReducer = authSlise.reducer;
+export const authReducer = authSlice.reducer;

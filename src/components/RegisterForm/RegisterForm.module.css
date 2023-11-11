@@ -1,0 +1,55 @@
+.centerBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.logBtn {
+  position: relative;
+  display: inline-block;
+  padding: 12px 24px;
+  border: none;
+  font-size: 16px;
+  background-color: inherit;
+  border-radius: 100px;
+  font-weight: 600;
+  color: #8f4e8a;
+  box-shadow: 0 0 0 2px #a761ee;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.logBtn span:last-child {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  background-color: #d3cd46;
+  border-radius: 50%;
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.logBtn span:first-child {
+  position: relative;
+  z-index: 1;
+}
+
+.logBtn:hover {
+  box-shadow: 0 0 0 5px #d3cd46;
+  color: #8db1bd;
+}
+
+.logBtn:active {
+  scale: 0.95;
+}
+
+.logBtn:hover span:last-child {
+  width: 150px;
+  height: 150px;
+  opacity: 1;
+}

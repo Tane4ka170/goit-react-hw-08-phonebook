@@ -11,30 +11,27 @@ const ContactForm = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
 
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = data => {
+    const { name, number } = data;
     const contact = {
       id: nanoid(),
-      name: data.name,
-      phone: data.phone,
+      name,
+      number,
     };
 
-    const isExist = contacts.find(
-      ({ name }) => name.toLowerCase() === contact.name.toLowerCase()
+    const isExist = contacts.some(
+      ({ name: existingName }) =>
+        existingName.toLowerCase() === name.toLowerCase()
     );
 
     if (isExist) {
-      return toast.warn(`${contact.name} is already in contacts.`);
+      toast.warn(`${name} is already in contacts.`);
+    } else {
+      dispatch(addContactThunk(contact));
+      reset();
     }
-
-    dispatch(addContactThunk(contact));
-    reset();
   };
 
   return (
@@ -49,7 +46,6 @@ const ContactForm = () => {
           required
           placeholder="Please provide a name"
         />
-        {errors.name && <p>{errors.name.message}</p>}
       </label>
 
       <label className={s.label}>
@@ -57,12 +53,11 @@ const ContactForm = () => {
         <input
           className={s.input}
           type="tel"
-          {...register('phone', { required: true })}
+          {...register('number', { required: true })}
           id="addNumber"
           placeholder="Please enter a valid phone number"
           required
         />
-        {errors.phone && <p>{errors.phone.message}</p>}
       </label>
 
       <button type="submit" className={s.button}>

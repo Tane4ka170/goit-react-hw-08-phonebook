@@ -18,11 +18,13 @@ const ContactList = () => {
   const dispatch = useDispatch();
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
-  const filteredContacts = contacts.filter(
-    contact =>
-      contact.name.toLowerCase().includes(` ${filter.toLowerCase()}`) ||
-      contact.name.toLowerCase().startsWith(filter.toLowerCase())
-  );
+  const filteredContacts = filter
+    ? contacts.filter(
+        contact =>
+          contact.name &&
+          contact.name.toLowerCase().includes(filter.toLowerCase())
+      )
+    : contacts;
 
   useEffect(() => {
     if (error) {

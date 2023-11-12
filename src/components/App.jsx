@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
-import { fetchAllContactsThunk } from 'redux/contacts/operations';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import Home from 'pages/Home/Home';
 import { Login } from 'pages/Login/Login';
@@ -10,13 +9,17 @@ import PrivateRoute from './PrivateRoute';
 import RestrictedRoute from './RestrictedRoute';
 import { Register } from 'pages/Register/Register';
 import NotFound from 'pages/NotFound/NotFound';
+import { selectIsRefreshing } from 'redux/auth/authSelectors';
+import { refreshThunk } from 'redux/auth/authOperations';
 
 const App = () => {
   const dispatch = useDispatch();
+  const refresh = useSelector(selectIsRefreshing);
   useEffect(() => {
-    dispatch(fetchAllContactsThunk());
+    dispatch(refreshThunk());
   }, [dispatch]);
-  return (
+
+  return refresh ? null : (
     <>
       <Routes>
         <Route path="/" element={<Layout />}>

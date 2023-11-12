@@ -34,8 +34,8 @@ export const RegisterForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <p classname={s.title}>Register </p>
-      <p classname={s.message}>Join now for complete access to the app </p>
+      <p className={s.title}>Register </p>
+      <p className={s.message}>Join now for complete access to the app </p>
       <div>
         <label>Name</label>
         <input

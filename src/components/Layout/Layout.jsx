@@ -1,3 +1,4 @@
+import { UserMenu } from 'components/UserMenu/UserMenu';
 import React, { Suspense } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink, Outlet } from 'react-router-dom';
@@ -12,9 +13,12 @@ export const Layout = () => {
         <button>Home</button>
       </NavLink>
       {isLoggedIn ? (
-        <NavLink to="/contacts">
-          <button>Contacts</button>
-        </NavLink>
+        <>
+          <NavLink to="/contacts">
+            <button>Contacts</button>
+          </NavLink>
+          <UserMenu />
+        </>
       ) : (
         <>
           <NavLink to="/register">

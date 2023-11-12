@@ -14,50 +14,53 @@ const clearToken = () => {
 
 export const registerThunk = createAsyncThunk(
   'register',
-  async (credentials, thunkApi) => {
+  async (credential, thunkApi) => {
     try {
-      const { data } = await contactApi.post('users/signup', credentials);
+      const { data } = await contactApi.post('users/signup', credential);
       setToken(data.token);
       return data;
     } catch (error) {
-      return thunkApi.rejectWithValue(error);
+      return thunkApi.rejectWithValue(error.message);
     }
   }
 );
 
 export const loginThunk = createAsyncThunk(
   'login',
-  async (credentials, thunkApi) => {
+  async (credential, thunkApi) => {
     try {
-      const { data } = await contactApi.post('users/login', credentials);
+      const { data } = await contactApi.post('users/login', credential);
       setToken(data.token);
       return data;
     } catch (error) {
-      return thunkApi.rejectWithValue(error);
+      return thunkApi.rejectWithValue(error.message);
     }
   }
 );
 
-export const logoutThunk = createAsyncThunk(
-  'users/logout',
-  async (_, thunkApi) => {
-    try {
-      await contactApi.post('users/login');
-      clearToken();
-    } catch (error) {
-      return thunkApi.rejectWithValue(error);
-    }
+export const logoutThunk = createAsyncThunk('logout', async (_, thunkApi) => {
+  try {
+    await contactApi.post('users/logout');
+    clearToken();
+  } catch (error) {
+    return thunkApi.rejectWithValue(error.message);
   }
-);
+});
 
 export const refreshThunk = createAsyncThunk(
   'auth/refresh',
   async (_, thunkApi) => {
+    const savedToken = thunkApi.getState().auth.token;
+
+    if (!savedToken) {
+      return thunkApi.rejectWithValue('Token is not exist');
+    }
     try {
-      const { data } = await contactApi.get('/users/current');
+      setToken(savedToken);
+      const { data } = await contactApi.get('users/current');
       return data;
     } catch (error) {
-      return thunkApi.rejectWithValue(error);
+      return thunkApi.rejectWithValue(error.message);
     }
   }
 );

@@ -40,10 +40,10 @@ const ContactList = () => {
         <Loader />
       ) : (
         <ul className={s.ul}>
-          {filteredContacts.map(({ id, name, phone }) => (
+          {filteredContacts.map(({ id, name, number }) => (
             <li className={s.list} key={id}>
               <p>
-                {name}: {phone}
+                {name}: {number}
               </p>
               <button className={s.btn} onClick={() => onDeleteContact(id)}>
                 Delete

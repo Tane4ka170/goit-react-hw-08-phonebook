@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <div className={s.homeContainer}>
       <h1 className={s.homeTitle}>
-        Getting Started with the Contact Manager
+        Getting Started with the Phonebook
         <span className={s.homeIcon} role="img" aria-label="Greeting icon">
           ☎
         </span>

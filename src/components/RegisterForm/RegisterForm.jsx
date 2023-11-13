@@ -3,9 +3,11 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Navigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+
 import { registerThunk } from 'redux/auth/authOperations';
 import { selectIsLoggedIn } from 'redux/auth/authSelectors';
 import { selectError } from 'redux/contacts/selectors';
+
 import s from './RegisterForm.module.css';
 
 export const RegisterForm = () => {

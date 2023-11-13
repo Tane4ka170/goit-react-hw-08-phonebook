@@ -1,8 +1,10 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { filterContacts } from 'redux/contacts/sliseFilter';
 import { selectFilter } from 'redux/contacts/selectors';
+
 import s from './Filter.module.css';
 
 const Filter = () => {

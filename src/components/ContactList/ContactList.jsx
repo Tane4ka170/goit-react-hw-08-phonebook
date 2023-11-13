@@ -1,7 +1,8 @@
 import React from 'react';
-import s from './ContactList.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import { toast } from 'react-toastify';
+
 import { deleteContactThunk } from 'redux/contacts/operations';
 import {
   selectContacts,
@@ -10,7 +11,8 @@ import {
   selectLoading,
 } from 'redux/contacts/selectors';
 import Loader from '../Loader/Loader';
-import { toast } from 'react-toastify';
+
+import s from './ContactList.module.css';
 
 const ContactList = () => {
   const contacts = useSelector(selectContacts);

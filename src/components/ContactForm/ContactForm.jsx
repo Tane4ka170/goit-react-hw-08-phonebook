@@ -2,9 +2,11 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { nanoid } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
+
 import { addContactThunk } from 'redux/contacts/operations';
 import { selectContacts } from 'redux/contacts/selectors';
-import { toast } from 'react-toastify';
+
 import s from './ContactForm.module.css';
 
 const ContactForm = () => {

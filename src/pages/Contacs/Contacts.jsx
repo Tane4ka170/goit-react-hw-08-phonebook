@@ -1,9 +1,11 @@
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+
 import ContactForm from 'components/ContactForm/ContactForm';
 import ContactList from 'components/ContactList/ContactList';
 import Filter from 'components/Filter/Filter';
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import { fetchAllContactsThunk } from 'redux/contacts/operations';
+
 import s from './Contacts.module.css';
 
 export const Contacts = () => {

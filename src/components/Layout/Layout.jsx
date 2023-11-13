@@ -34,12 +34,9 @@ export const Layout = () => {
           )}
         </nav>
       </header>
+
       <div>
-        <Suspense fallback={null}>
-          <div>
-            <Outlet />
-          </div>
-        </Suspense>
+        <Outlet />
       </div>
     </div>
   );

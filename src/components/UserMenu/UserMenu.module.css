@@ -1,0 +1,50 @@
+.userMenuContainer {
+  display: flex;
+  align-items: center;
+}
+
+.userMenuText {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.userMenuButton {
+  --color: #3b0243;
+  font-family: inherit;
+  display: inline-block;
+  width: 70px;
+  height: 40px;
+  overflow: hidden;
+  margin: 10px;
+  font-size: 17px;
+  z-index: 1;
+  color: var(--color);
+  border: 2px solid var(--color);
+  border-radius: 6px;
+  position: relative;
+}
+
+.userMenuButton::before {
+  position: absolute;
+  content: '';
+  background: var(--color);
+  width: 150px;
+  height: 200px;
+  z-index: -1;
+  border-radius: 50%;
+}
+
+.userMenuButton:hover {
+  color: white;
+}
+
+.userMenuButton:before {
+  top: 100%;
+  left: 100%;
+  transition: 0.3s all;
+}
+
+.userMenuButton:hover::before {
+  top: -30px;
+  left: -30px;
+}

@@ -1,3 +1,47 @@
+.regiserForm {
+  max-width: 500px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.rTitle {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.rMessage {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.rFormGroup {
+  margin-bottom: 20px;
+}
+
+.rLabel {
+  font-size: 16px;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.rInput {
+  width: 95%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.errorMessage {
+  color: #ff0000;
+  margin-top: 8px;
+}
+
 .centerBtn {
   display: flex;
   justify-content: center;
@@ -28,7 +72,7 @@
   transform: translate(-50%, -50%);
   width: 20px;
   height: 20px;
-  background-color: #d3cd46;
+  background-color: #e190a3;
   border-radius: 50%;
   opacity: 0;
   transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
@@ -40,8 +84,8 @@
 }
 
 .logBtn:hover {
-  box-shadow: 0 0 0 5px #d3cd46;
-  color: #8db1bd;
+  box-shadow: 0 0 0 5px #e190a3;
+  color: #9626a3;
 }
 
 .logBtn:active {
@@ -52,4 +96,21 @@
   width: 150px;
   height: 150px;
   opacity: 1;
+}
+
+.loginLink {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #333;
+}
+
+.loginLink a {
+  color: #ce86b4;
+  text-decoration: none;
+}
+
+.loginLink a:hover {
+  text-decoration: underline;
 }

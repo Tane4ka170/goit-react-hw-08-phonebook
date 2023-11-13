@@ -1,12 +1,13 @@
 .div {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #f8631f;
-    border-radius: 10px;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #45e55e;
+  border-radius: 10px;
+  background-color: #9078a8;
 }
 
 .title {
-    font-size: 24px;
-    margin: 10px 0;
+  font-size: 24px;
+  margin: 10px 0;
 }

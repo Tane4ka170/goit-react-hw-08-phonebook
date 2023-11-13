@@ -20,12 +20,13 @@ const Filter = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form className={s.filterForm} onSubmit={handleSubmit(onSubmit)}>
       <p className={s.title}>Find contacts by name</p>
       <input
         className={s.inpt}
         {...register('filter')}
         type="text"
+        placeholder="Enter Name"
         onChange={event => dispatch(filterContacts(event.target.value.trim()))}
       />
     </form>

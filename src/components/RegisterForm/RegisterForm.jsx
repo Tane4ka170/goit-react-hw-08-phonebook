@@ -33,11 +33,11 @@ export const RegisterForm = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <p className={s.title}>Register </p>
-      <p className={s.message}>Join now for complete access to the app </p>
+    <form className={s.regiserForm} onSubmit={handleSubmit(onSubmit)}>
+      <p className={s.rTitle}>Register </p>
+      <p className={s.rMessage}>Join now for complete access to the app </p>
       <div>
-        <label>Name</label>
+        <label className={s.rLabel}>Name</label>
         <input
           {...register('name', {
             required: 'Please provide your name',
@@ -48,11 +48,14 @@ export const RegisterForm = () => {
           })}
           type="text"
           placeholder="Full Name"
+          className={s.rInput}
         />
-        {formErrors.name && <p>{formErrors.name.message}</p>}
+        {formErrors.name && (
+          <p className={s.errorMessage}>{formErrors.name.message}</p>
+        )}
       </div>
-      <div>
-        <label>Email</label>
+      <div className={s.rFormGroup}>
+        <label className={s.rLabel}>Email</label>
         <input
           {...register('email', {
             required: 'Please provide your email',
@@ -63,11 +66,14 @@ export const RegisterForm = () => {
           })}
           type="email"
           placeholder="Email"
+          className={s.rInput}
         />
-        {formErrors.email && <p>{formErrors.email.message}</p>}
+        {formErrors.email && (
+          <p className={s.errorMessage}>{formErrors.email.message}</p>
+        )}
       </div>
-      <div>
-        <label>Password</label>
+      <div className={s.rFormGroup}>
+        <label className={s.rLabel}>Password</label>
         <input
           {...register('password', {
             required: 'Please enter your password',
@@ -78,13 +84,16 @@ export const RegisterForm = () => {
           })}
           type="password"
           placeholder="Password"
+          className={s.rInput}
         />
-        {formErrors.password && <p>{formErrors.password.message}</p>}
+        {formErrors.password && (
+          <p className={s.errorMessage}>{formErrors.password.message}</p>
+        )}
         <div className={s.centerBtn}>
           <button className={s.logBtn}>Sign up</button>
         </div>
 
-        <span>
+        <span className={s.loginLink}>
           Have an account already? <Link to={'/login'}>Log in now</Link>
         </span>
       </div>

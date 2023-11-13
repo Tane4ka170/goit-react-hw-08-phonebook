@@ -1,13 +1,23 @@
+.filterForm {
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+}
+
 .title {
-    margin-top: 0;
-    margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .inpt {
-    width: 94%;
-    padding: 10px;
-    margin-top: 5px;
-    margin-bottom: 15px;
-    border: 1px solid #93996c;
-    border-radius: 5px;
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  outline: none;
+}
+
+.inpt:focus {
+  background-color: #ec6ee2;
 }

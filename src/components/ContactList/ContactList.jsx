@@ -48,7 +48,7 @@ const ContactList = () => {
                 {name}: {number}
               </p>
               <button className={s.btn} onClick={() => onDeleteContact(id)}>
-                Delete
+                &#128465;
               </button>
             </li>
           ))}

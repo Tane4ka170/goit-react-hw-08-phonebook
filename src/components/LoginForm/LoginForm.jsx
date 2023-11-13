@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Navigate } from 'react-router-dom';
@@ -6,7 +6,6 @@ import { toast } from 'react-toastify';
 
 import { loginThunk } from 'redux/auth/authOperations';
 import { selectIsLoggedIn } from 'redux/auth/authSelectors';
-import { selectError } from 'redux/contacts/selectors';
 
 import s from './LoginForm.module.css';
 
@@ -17,17 +16,14 @@ export const LoginForm = () => {
     register,
     formState: { errors: formErrors },
   } = useForm();
-  const error = useSelector(selectError);
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
-  useEffect(() => {
-    if (error) {
-      toast.error(error);
-    }
-  }, [error]);
-
   const onSubmit = data => {
-    dispatch(loginThunk(data));
+    dispatch(loginThunk(data))
+      .unwrap()
+      .catch(error => {
+        toast.error('Invalid email or password');
+      });
   };
 
   if (isLoggedIn) {

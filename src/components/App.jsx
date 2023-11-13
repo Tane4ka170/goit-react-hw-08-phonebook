@@ -11,6 +11,7 @@ import { Register } from 'pages/Register/Register';
 import NotFound from 'pages/NotFound/NotFound';
 import { selectIsRefreshing } from 'redux/auth/authSelectors';
 import { refreshThunk } from 'redux/auth/authOperations';
+import Loader from '../components/Loader/Loader';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -19,7 +20,9 @@ const App = () => {
     dispatch(refreshThunk());
   }, [dispatch]);
 
-  return refresh ? null : (
+  return refresh ? (
+    <Loader />
+  ) : (
     <>
       <Routes>
         <Route path="/" element={<Layout />}>

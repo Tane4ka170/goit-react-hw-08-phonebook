@@ -30,6 +30,11 @@
 .input:focus {
   background-color: #ec6ee2;
 }
+@media only screen and (max-width: 600px) {
+  .input {
+    width: 100%;
+  }
+}
 .button {
   --color: #3b0243;
   font-family: inherit;
